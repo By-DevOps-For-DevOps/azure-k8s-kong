@@ -13,7 +13,6 @@ az group create --name ${ENV_NAME} --location ${AZURE_LOCATION}
 
 # VAULT
 az keyvault create --name ${ENV_NAME} --resource-group ${ENV_NAME} --location ${AZURE_LOCATION} --enabled-for-template-deployment true
-az keyvault secret set --vault-name ${ENV_NAME} --name "GIT-TOKEN" --value "${GIT_TOKEN}"
 
 # SSH private/public key (without prompt)
 ssh-keygen -t rsa -b 2048 -f ${ENV_NAME}.pem -q -P "" -C "AZ-key"
@@ -27,3 +26,4 @@ az aks create -g ${ENV_NAME} -n ${K8S_CLUSTER_NAME} --agent-count ${K8S_AGENT_CO
 az aks install-cli
 az aks get-credentials -g ${ENV_NAME} -n ${K8S_CLUSTER_NAME}
 kubectl get nodes
+
