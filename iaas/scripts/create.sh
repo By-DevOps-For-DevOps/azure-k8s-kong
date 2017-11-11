@@ -23,6 +23,9 @@ az keyvault secret set --vault-name ${ENV_NAME} --name 'VM-ADMIN-PRIVATE-KEY' -f
 
 ###################### K8S #####################################
 az aks create -g ${ENV_NAME} -n ${K8S_CLUSTER_NAME} --agent-count ${K8S_AGENT_COUNT} --generate-ssh-keys
+#--agent-vm-size 'Standard_D3_v2' \
+#--kubernetes-version '1.8.1'
+
 az aks install-cli
 az aks get-credentials -g ${ENV_NAME} -n ${K8S_CLUSTER_NAME}
 kubectl get nodes
